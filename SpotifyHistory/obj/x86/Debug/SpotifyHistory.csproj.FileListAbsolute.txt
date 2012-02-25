@@ -8,3 +8,5 @@ f:\neuer ordner\visual studio 2010\Projects\SpotifyHistory\SpotifyHistory\obj\x8
 f:\neuer ordner\visual studio 2010\Projects\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.pdb
 f:\neuer ordner\visual studio 2010\Projects\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.MainForm.resources
 f:\neuer ordner\visual studio 2010\Projects\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.SettingsForm.resources
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.exe
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.pdb
