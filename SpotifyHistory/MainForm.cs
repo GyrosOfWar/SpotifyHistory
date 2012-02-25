@@ -28,7 +28,6 @@ namespace SpotifyHistory
             InitializeComponent();
             if (File.Exists(filename))
                 parser.ReadFile(filename);
-            richTextBox1.Text = parser.ToString();
             sf = new SettingsForm();
             isRefreshing = true;
             refreshInterval = 5;
@@ -36,6 +35,7 @@ namespace SpotifyHistory
             updateThread.Start();
             writeToFileThread = new Thread(new ThreadStart(WriteLoop));
             //writeToFileThread.Start();
+            AddListItems();
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
@@ -56,9 +56,9 @@ namespace SpotifyHistory
         {
             using (StreamWriter sw = new StreamWriter(filename))
             {
-                foreach (string s in parser.SongList)
+                foreach (KeyValuePair<DateTime, string> s in parser.SongList)
                 {
-                    sw.WriteLine(s);
+                    sw.WriteLine("[" + s.Key.ToString() + "]: "+ s.Value);
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace SpotifyHistory
 
         private void UpdateLoop()
         {
-            while (true)
+            while (isRefreshing)
             {
                 parser.UpdateList();
                 this.SetText(parser.ToString());
@@ -93,14 +93,14 @@ namespace SpotifyHistory
         }
         private void SetText(string t)
         {
-            if (this.richTextBox1.InvokeRequired)
+            if (this.listBox1.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(SetText);
                 this.Invoke(d, new object[] { t });
             }
             else
             {
-                this.richTextBox1.Text = t;
+                this.listBox1.Text = t;
             }
         }
         private void WriteLoop()
@@ -112,6 +112,16 @@ namespace SpotifyHistory
                 WriteToFile();
                 Thread.Sleep(refreshInterval * 1000);
             }
+        }
+        private void AddListItems()
+        {
+            listBox1.BeginUpdate();
+
+            foreach(KeyValuePair<DateTime, string> kvp in parser.SongList)
+            {
+                listBox1.Items.Add(kvp.Key.ToString() + ", " + kvp.Value);
+            }
+            listBox1.EndUpdate();
         }
     }
 }

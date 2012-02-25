@@ -10,15 +10,15 @@ namespace SpotifyHistory
 {
     public class ProcessParser
     {
-        private List<string> songList;
-        public List<string> SongList
+        private Dictionary<DateTime, string> songList;
+        public Dictionary<DateTime, string> SongList
         {
             get { return songList; }
         }
 
         public ProcessParser()
         {
-            songList = new List<string>();
+            songList = new Dictionary<DateTime, string>();
         }
 
         public void ReadFile(string path)
@@ -26,12 +26,40 @@ namespace SpotifyHistory
             if (!File.Exists(path))
                 throw new IOException("File not found: " + path);
 
-            string[] songs = File.ReadAllLines(path);
-            foreach (string s in songs)
+            string[] lines = File.ReadAllLines(path);
+            string[] songs = ParseSongs(lines);
+            DateTime[] timestamps = ParseDates(lines);
+            for (int i = 0; i < lines.Length; i++)
             {
-                songList.Add(s);
+                songList.Add(timestamps[i], songs[i]);
             }
+
         }
+
+        private DateTime[] ParseDates(string[] lines)
+        {
+            DateTime[] retVal = new DateTime[lines.Length];
+
+            for(int i = 0; i < lines.Length; i++)
+            {
+                string date = lines[i].Substring(1, 19);
+                DateTime dt = DateTime.Parse(date);
+                retVal[i] = dt;
+            }
+
+            return retVal;
+        }
+
+        private string[] ParseSongs(string[] lines)
+        {
+            string[] retVal = new string[lines.Length];
+            for (int i = 0; i < lines.Length; i++)
+            {
+                retVal[i] = lines[i].Substring(23);
+            }
+            return retVal;
+        }
+
         private string GetSongName()
         {
             Process[] pList = Process.GetProcesses();
@@ -45,31 +73,30 @@ namespace SpotifyHistory
             string songName = (windowName == null) ? null : windowName.Substring(10);
             string lastSong = "";
             if (songList.Count > 0)
-                lastSong = songList.Last();
+                lastSong = songList.Last().Value;
             return (songName != lastSong) ? songName : null;
         }
 
         public void UpdateList()
         {
             string song = GetSongName();
-            string now = GetCurrentDate();
+            DateTime now = GetCurrentDate();
             if(song != null)
-                songList.Add("[" + now + "]: " + song);
+                songList.Add(now, song);
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (string s in songList)
-                sb.Append(s + "\n");
-            
+            foreach (KeyValuePair<DateTime, string> s in songList)
+                sb.Append("[" + s.Key.ToString() + "]: " + s.Value + "\n");
             return sb.ToString();
         }
 
-        private string GetCurrentDate()
+        private DateTime GetCurrentDate()
         {
             DateTime Now = DateTime.Now;
-            return Now.ToShortDateString() + ", " + Now.ToLongTimeString();
+            return Now;
         }
     }
 }

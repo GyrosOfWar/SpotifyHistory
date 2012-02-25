@@ -10,3 +10,11 @@ f:\neuer ordner\visual studio 2010\Projects\SpotifyHistory\SpotifyHistory\obj\x8
 f:\neuer ordner\visual studio 2010\Projects\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.SettingsForm.resources
 C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.exe
 C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.pdb
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\bin\Debug\SpotifyHistory.exe
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\bin\Debug\SpotifyHistory.pdb
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.MainForm.resources
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.Properties.Resources.resources
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\SpotifyHistory.SettingsForm.resources
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Martin\git\SpotifyHistory\SpotifyHistory\obj\x86\Debug\GenerateResource.write.1.tlog
