@@ -44,6 +44,8 @@ namespace SpotifyHistory
             {
                 updateButton.Text = "Stop Updating";
                 isRefreshing = true;
+                if (!updateThread.IsAlive)
+                    updateThread.Start();
             }
             else
             {
@@ -78,6 +80,7 @@ namespace SpotifyHistory
         {
             WriteToFile();
             sf.Close();
+            updateThread.Abort();
             this.Close();
             Application.Exit();
         }
@@ -100,7 +103,8 @@ namespace SpotifyHistory
             }
             else
             {
-                this.listBox1.Text = t;
+                KeyValuePair<DateTime, string> kvp = parser.SongList.Last();
+                listBox1.Items.Add("[" + kvp.Key.ToString() + "]: " + kvp.Value);
             }
         }
         private void WriteLoop()
@@ -119,7 +123,7 @@ namespace SpotifyHistory
 
             foreach(KeyValuePair<DateTime, string> kvp in parser.SongList)
             {
-                listBox1.Items.Add(kvp.Key.ToString() + ", " + kvp.Value);
+                listBox1.Items.Add("[" + kvp.Key.ToString() + "]: " + kvp.Value);
             }
             listBox1.EndUpdate();
         }
