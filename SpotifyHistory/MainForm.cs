@@ -90,7 +90,7 @@ namespace SpotifyHistory
             while (isRefreshing)
             {
                 parser.UpdateList();
-                string last = parser.GetLastSong();
+                string last = parser.SongList.Last().Value;
                 if (last == null)
                     continue;
                 this.SetText(last);
@@ -107,7 +107,14 @@ namespace SpotifyHistory
             }
             else
             {
-                listBox1.Items.Add(t);
+                //listBox1.Items.Add(t);
+                listBox1.BeginUpdate();
+                listBox1.Items.Clear();
+                foreach (KeyValuePair<DateTime, string> kvp in parser.SongList)
+                {
+                    listBox1.Items.Add("[" + kvp.Key.ToString() + "]: " + kvp.Value);
+                }
+                listBox1.EndUpdate();
             }
         }
         private void WriteLoop()

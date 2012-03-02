@@ -98,17 +98,5 @@ namespace SpotifyHistory
             DateTime Now = DateTime.Now;
             return Now;
         }
-
-        internal string GetLastSong()
-        {
-            string newSong = GetSongName();
-            string lastList = null;
-            if (songList.Count > 0)
-                lastList = songList.Last().Value;
-            if (newSong == lastList)
-                return null;
-            else
-                return newSong;
-        }
     }
 }
