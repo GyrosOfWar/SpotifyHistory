@@ -44,8 +44,8 @@ namespace SpotifyHistory
             {
                 updateButton.Text = "Stop Updating";
                 isRefreshing = true;
-                if (!updateThread.IsAlive)
-                    updateThread.Start();
+                //if (!updateThread.IsAlive)
+                    
             }
             else
             {
@@ -107,7 +107,6 @@ namespace SpotifyHistory
             }
             else
             {
-                //listBox1.Items.Add(t);
                 listBox1.BeginUpdate();
                 listBox1.Items.Clear();
                 foreach (KeyValuePair<DateTime, string> kvp in parser.SongList)

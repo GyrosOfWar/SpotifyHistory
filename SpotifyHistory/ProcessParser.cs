@@ -77,6 +77,13 @@ namespace SpotifyHistory
             return (songName != lastSong) ? songName : null;
         }
 
+        private string GetSongNameNew()
+        {
+            Process[] possibleProcesses;
+
+            return null;
+        }
+
         public void UpdateList()
         {
             string song = GetSongName();
