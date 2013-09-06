@@ -1,1 +1,4 @@
-This is a small application designed to keep a persistent record of your Spotify listening history. It's still an a very early state, so don't be surprised if it breaks in interesting ways. 
+This is a small application designed to keep a persistent record of your Spotify listening history.
+It's still an a very early state, so don't be surprised if it breaks in interesting ways. 
+
+As of 2013, this application is deprecated (no longer necessary, since Spotify now implements its own persistent listening history)
